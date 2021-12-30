@@ -1,0 +1,21 @@
+.mainpage_navbar_base {
+  background-color: hsl(48, 100%, 96%);
+}
+
+.mainpage_navbar_menu {
+  background-color: hsl(48, 100%, 96%);
+}
+
+.mainpage_letsfun_img {
+  background-image: url("../img/imagephoto.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mainpage_letsfun_letter {
+  color: rgb(100, 1, 37);
+  font-weight: bold;
+  text-shadow: 0.1rem 0.1rem 0 rgb(255, 255, 255),
+    -0.1rem 0.1rem 0 rgb(255, 255, 255), 0.1rem -0.1rem 0 rgb(255, 255, 255),
+    -0.1rem -0.1rem 0 rgb(255, 255, 255);
+}
