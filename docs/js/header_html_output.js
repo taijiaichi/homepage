@@ -1,6 +1,7 @@
 const xhr = new XMLHttpRequest(),
   method = "GET",
-  url = "homepage/common_html/header.html";
+  url = "common_html/header.html";
+const header = document.getElementById("header"); //読み込みたい位置を指定
 
 xhr.open(method, url, true);
 xhr.onreadystatechange = function () {
