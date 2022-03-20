@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>愛知県太極拳協会</title>
+    <link rel="stylesheet" href="lib/bulma.min.css" />
+
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/mainpage.css" />
+
+    <script src="lib/papaparse.min.js"></script>
+
+    <script src="js/fetchcsvdata.js"></script>
+    <script src="js/navbar.js"></script>
+
+    <script>
+      fetchCommittee();
+    </script>
+  </head>
+  <body>
+    <!-- ヘッダー部 -->
+    <nav
+      class="common_navbar_base navbar"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img src="img/brandimage.png" />
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navMenu"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navMenu" class="navbar-menu common_navbar_menu">
+        <div class="navbar-start">
+          <a href="index.html" class="navbar-item"> トップページ </a>
+
+          <a class="navbar-item"> 入会希望・お問い合わせ </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> 各種情報 </a>
+
+            <div class="navbar-dropdown">
+              <a href="aboutus.html" class="navbar-item"> 本協会について </a>
+              <a href="lesson.html" class="navbar-item"> 教室案内 </a>
+              <a href="active.html" class="navbar-item"> 年間行事案内 </a>
+              <a href="faq.html" class="navbar-item"> よくある質問 </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- メイン部 -->
+    <main class="section has-background-light">
+      <div class="container box">
+        <div class="columns is-multiline">
+          <div class="column is-full">
+            <h2 class="subtitle">本協会について</h2>
+          </div>
+          <div class="column">
+            <div class="columns is-desktop is-multiline is-centered">
+              <div class="card column is-half-desktop">
+                <div class="card-content">
+                  <h3 class="subtitle">協会の目的</h3>
+                  <p>
+                    本協会は1982年発足以来、太極拳を始め長拳や伝統拳、武器類など中国の各種武術を
+                    『趣味として、健康法として、競技スポーツとして』、それぞれの目的に応じた練習・活動をしています。
+                  </p>
+                  <p>
+                    日頃の練習の中で、さらに技術を深めたい方達に対しては、技術向上の励みとなるように、
+                    また競技選手や指導者育成に対応するため、日本連盟公認の太極拳や長拳の段級位制度や指導者資格、
+                    審判員資格の取得へのサポート、全日本選手権はじめ各種大会への選手派遣等にも積極的に取り組んでいます。
+                  </p>
+                  <p>
+                    これらの活動を通じて、会員の健康増進、体力向上を図り、同時に日中両国の相互理解・交流に寄与することを目的としています。
+                  </p>
+                </div>
+              </div>
+              <div class="card column is-half-desktop">
+                <div class="card-content">
+                  <h3 class="subtitle">協会の組織</h3>
+                  <p>
+                    本協会の目的と規約に賛同し、所定の会費等納める個人と所定の賛助会費を納める個人・団体・法人で構成されています。
+                  </p>
+                  <p>
+                    本協会は、公益社団法人
+                    日本武術太極拳連盟傘下の愛知県武術太極拳連盟が、1988年に発足すると同時に加盟しております。
+                  </p>
+                </div>
+              </div>
+
+              <div class="card column">
+                <div class="card-content">
+                  <h3 class="subtitle">協会の役員</h3>
+                  <table
+                    class="table is-striped is-fullwidth"
+                    id="committee"
+                  ></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- フッター部 -->
+    <footer class="footer has-background-dark">
+      <div
+        class="columns is-desktop is-multiline is-centered mx-6 has-text-centered"
+      >
+        <a href="index.html" class="column has-text-link-light">トップページ</a>
+        <a href="lesson.html" class="column has-text-link-light">教室案内</a>
+        <a href="active.html" class="column has-text-link-light"
+          >年間行事案内</a
+        >
+        <a href="aboutus.html" class="column has-text-link-light"
+          >本協会について</a
+        >
+        <a href="faq.html" class="column has-text-link-light"> よくある質問 </a>
+        <a class="column has-text-link-light">お問い合わせ</a>
+      </div>
+      <div class="content has-text-centered">
+        <p>
+          <strong class="has-text-light">&copy;2021 愛知県太極拳協会</strong>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

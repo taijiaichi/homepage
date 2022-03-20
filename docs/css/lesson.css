@@ -1,0 +1,31 @@
+#regular-lesson > tbody > .week {
+  background-color: hsl(188, 49%, 82%);
+}
+
+#regular-lesson > tbody > .lesson > .time {
+  width: 14ex;
+  padding: 1ex;
+}
+
+#regular-lesson > tbody > .lesson > .name {
+  width: 18ex;
+  padding: 1ex;
+}
+
+#regular-lesson > tbody > .lesson > .instructor {
+  width: 15ex;
+  padding: 1ex;
+}
+
+#regular-lesson > tbody > .lesson > .about {
+  padding: 1ex;
+}
+
+#regular-lesson > tbody > .lesson > .clerk {
+  width: 15ex;
+  padding: 1ex;
+}
+
+#other-lesson > tbody > .city {
+  background-color: hsl(188, 49%, 82%);
+}
