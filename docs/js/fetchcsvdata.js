@@ -294,7 +294,7 @@ function generateAnnualEventsMobileHTMLBySortedData(data, setOfStartYearMonth) {
 
 function generateCommitteesMobileHTML(data) {
   const wrapper = document.createElement("div");
-  wrapper.setAttribute("class", "generated_data");
+  wrapper.setAttribute("class", "generated_data is-hidden-desktop");
 
   for (const person of data) {
     const commitee = document.createElement("div");
