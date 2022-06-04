@@ -1,0 +1,34 @@
+#annual-events > div.generated_data > .month > .month_title {
+  background-color: hsl(188, 49%, 82%);
+  color: hsl(212, 100%, 19%);
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#annual-events > div.generated_data > .month > .event > .event_info {
+  margin-left: 1em;
+}
+
+#annual-events
+  > div.generated_data
+  > .month
+  > .event
+  > .event_info
+  > .event_name {
+  font-weight: bold;
+}
+
+#annual-events
+  > div.generated_data
+  > .month
+  > .event
+  > .event_info
+  > .event_name {
+  font-weight: bold;
+}
+#annual-events > table.generated_data > thead {
+  background-color: hsl(188, 49%, 82%);
+}

@@ -1,0 +1,11 @@
+#commitees > div.generated_data > .commitee > .job_title {
+  font-weight: bold;
+}
+
+#commitees > div.generated_data > .commitee > .name {
+  margin-left: 1em;
+}
+
+#commitees > div.generated_data > .commitee > .sub-organ {
+  margin-left: 2em;
+}

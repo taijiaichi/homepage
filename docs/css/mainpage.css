@@ -1,3 +1,43 @@
+.mainpage_header {
+  position: relative;
+  background-image: url("../img/imagephoto.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 20rem;
+  margin: 0 3rem;
+
+  text-align: center;
+}
+
+.mainpage_header .title {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+
+  height: 8rem;
+
+  background-image: url("../img/aichitaichi.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.mainpage_header .subtitle {
+  position: absolute;
+  top: 14rem;
+  left: -2em;
+  right: -2em;
+
+  height: 7rem;
+
+  background-image: url("../img/letsfun.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 .mainpage_letsfun_img {
   background-image: url("../img/imagephoto.png");
   background-repeat: no-repeat;

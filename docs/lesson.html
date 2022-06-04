@@ -2,6 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
     <title>愛知県太極拳協会</title>
     <link rel="stylesheet" href="lib/bulma.min.css" />
 
@@ -11,28 +12,27 @@
     <script src="lib/papaparse.min.js"></script>
 
     <script src="js/fetchcsvdata.js"></script>
+    <script src="js/fetchimgdata.js"></script>
     <script src="js/navbar.js"></script>
 
     <script>
-      fetchRegularLessons();
-      fetchOtherLessons();
+      mountTaichiLessonsHTMLTable();
+      mountTyokenLessonsHTMLTable();
+
+      mountRegularLessonsIMGs();
     </script>
   </head>
   <body>
     <!-- ヘッダー部 -->
     <nav
-      class="common_navbar_base navbar"
+      class="common_navbar_base navbar is-fixed-top"
       role="navigation"
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item">
-          <img src="img/brandimage.png" />
-        </a>
-
         <a
           role="button"
-          class="navbar-burger"
+          class="ml-0 navbar-burger"
           aria-label="menu"
           aria-expanded="false"
           data-target="navMenu"
@@ -41,13 +41,21 @@
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
+        <a class="navbar-item">
+          <img src="img/brandimage.png" />
+        </a>
       </div>
 
       <div id="navMenu" class="navbar-menu common_navbar_menu">
         <div class="navbar-start">
           <a href="index.html" class="navbar-item"> トップページ </a>
 
-          <a class="navbar-item"> 入会希望・お問い合わせ </a>
+          <a
+            href="https://ssl.form-mailer.jp/fms/6654742a745128"
+            class="navbar-item"
+          >
+            入会希望・お問い合わせ
+          </a>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> 各種情報 </a>
@@ -65,60 +73,229 @@
 
     <!-- メイン部 -->
     <main class="section has-background-light">
-      <div class="container box">
+      <div class="container box is-max-desktop">
         <div class="columns is-multiline">
           <div class="column is-full">
-            <h2 class="subtitle">教室案内</h2>
+            <h2 class="subtitle">教室案内-1 定例会</h2>
           </div>
           <div class="column">
             <div class="columns is-desktop is-multiline is-centered">
               <div class="card column">
                 <div class="card-content">
-                  <h3 class="subtitle">定例会</h3>
                   <p>
-                    当協会が主催する会員対象の教室です。定例会への参加には当協会への入会及び月謝のお支払いが必要です。
+                    当協会が主催する会員対象の定例教室です。練習している種目や内容については、下記項目をご参照ください。
                   </p>
+                  <p>クラスの見学や体験(最初の１回は無料)を希望される方は、 <a>｢お問い合わせ｣</a>のメールフォームをご利用いただくか、アドレスへのメール、電話にてご連絡ください。なお非会員の方で、見学や無料体験後にクラスへの参加を希望される場合は、当協会に入会していただきます。</p>
                   <br />
-                  <h4 id="practices">【練習内容】</h4>
-                  <table class="table is-fullwidth" id="regular-lesson"></table>
-                  <h4>【入会について】</h4>
+                  <h3 class="classroom_title">【太極拳クラス】</h4>
+                  <div class="is-fullwidth" id="taichi-lesson"></div>
                   <p>
-                    当協会に入会希望される方は、下記金額を添えてお申込みいただきます。<br>
-                    <ul>
-                      <li>入会金……………1,000円</li>
-                      <li>年会費……………3,000円</li>
-                      <li>スポーツ保険…1,850円（中学生以下800円）</li>
-                    </ul>
-                    ※年会費とスポーツ保険は4月～翌3月までの年間費用で、以後1年ごとに支払っていただき、会員更新、加入更新となります。<br>
-                    ※年会費は、1家族3名以上の世帯について割引があります。<br>
-                    ※スポーツ保険は任意加入です。
+                    ※上記４つのクラスは原則週１回で、随時生徒募集中です。<br>
+                    ※各クラスは複数の会場併用となる場合もあり、週によっては会場が変わることもありますので、下記 ｢■定例会スケジュール｣ にてご確認ください。
                   </p>
-                  <br />
-                  <h4>【定例会月謝について】</h4>
+
+                  <h4>■太極拳クラスの月謝について：</h4>
                   <p>
-                    定例会に参加する場合は、１教室につき下記月謝を納めていただきます。
-                    入会手続きや月謝の支払い等は、定例会の各教室で直接受け付けています。
+                    上記定例会に参加される場合は、1クラスにつき以下の月謝を納めていただきます。<br>
                     <ul>
-                      <li>一般……………4,000円</li>
-                      <li>高校生以下……3,000円</li>
+                      <li>＊一般………………4,000円</li>
+                      <li>＊高校生以下……3,000円</li>
                     </ul>
-                    ※一部の定例会では割引が適用される場合があります。詳しくは<a href="#practices">【練習内容】</a>をご覧ください。
+                    なお、非会員の方が定例会への参加を希望される場合は、当協会に入会していただきます。手続きについては、下記の ｢★入会手続きについて…｣ をご参照ください。
+                    月謝のお支払いや入会手続きなどは、各クラスにて直接受付けております。
+                  </p>
+
+                  <h3 class="classroom_title">【長拳クラス】</h4>
+                  <div class="is-fullwidth" id="tyoken-lesson"></div>
+                  <p>
+                    ※上記の ｢長拳[初級]｣と｢長拳[ジュニアカンフー]｣ は、いずれも随時生徒募集中です。<br>
+                    ※上記の ｢長拳[初級]｣と｢長拳[ジュニアカンフー]｣ は原則週１回のクラスです。ただし、ケースにより、会員ご自身で他のクラスとあわせて最大週３回まで参加ペースを選択できます。<br>
+                    ※｢長拳[１]～[３]｣は、｢長拳[初級]｣と｢長拳[ジュニアカンフー]｣からの昇級者を対象としたクラスです。会員ご自身で週１～３回 (あるいは曜日に関係なく、１カ月当たりの参加回数により月謝(金額)を選択して練習できます。この場合、月謝の割引き制度がありますので、下記｢■長拳クラスの月謝について｣ をご参照ください。<br>
+                    ※各クラスは複数の会場併用となる場合もあり、週によっては会場が変わることもありますので、下記 ｢■定例会スケジュール｣ にてご確認ください。
+                  </p>
+
+                  <h4>■長拳クラスの月謝について：</h4>
+                  <p>
+                    上記の定例会に参加される場合は、参加ペースにより以下の月謝を納めていただきます。<br>
+                    
+                    <ul class="is-hidden-desktop">
+                      <li>週１回 または 月５回以内
+                        <ul>
+                          <li>＊一般………………4,000円</li>
+                          <li>＊高校生以下……3,000円</li>
+                        </ul>
+                      </li>
+                      <li>週２回 または 月９回以内
+                        <ul>
+                          <li>＊一般………………7,000円</li>
+                          <li>＊高校生以下……5,000円</li>
+                        </ul>
+                      </li>
+                      <li>週３回 または 月10回以上
+                        <ul>
+                          <li>＊一般………………9,000円</li>
+                          <li>＊高校生以下……7,000円</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <table class="table is-hidden-touch">
+                      <thead>
+                        <tr>
+                          <th>参加回数</th>
+                          <th>一般</th>
+                          <th>高校生以下</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>週１回 または 月５回以内</th>
+                          <td>4,000円</td>
+                          <td>3,000円</td>
+                        </tr>
+                        <tr>
+                          <th>週２回 または 月９回以内</th>
+                          <td>7,000円</td>
+                          <td>5,000円</td>
+                        </tr>
+                        <tr>
+                          <th>週３回 または 月10回以上</th>
+                          <td>9,000円</td>
+                          <td>7,000円</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                    なお、非会員の方が定例会への参加を希望される場合は、当協会に入会していただきます。手続きについては、下記の ｢★入会手続きについて…｣ をご参照ください。
+                    月謝のお支払いや入会手続きなどは、各クラスにて直接受付けております。
+                  </p>
+
+                  <h4>■定例会スケジュール：</h4>
+                  <div id="regular_lessons_schedule"></div>
+
+                  <h4>■定例会場 一覧：</h4>
+                  <ul class="is-hidden-desktop">
+                    <li>
+                      <span class="shorted_name">露橋剣道</span><br>
+                      名古屋市露橋スポーツセンター(剣道場)<br>
+                      〒454-0022 名古屋市中川区露橋2丁目14-1
+                    </li>
+                    <li>
+                      <span class="shorted_name">ガイシ３</span><br>
+                      日本ガイシホール(第３競技場)<br>
+                      〒457-0833 名古屋市南区東又兵ヱ町5丁目1-16
+                    </li>
+                    <li>
+                      <span class="shorted_name">枇杷島２／枇杷島軽</span><br>
+                      名古屋市枇杷島スポーツセンター(第２競技場／軽運動室)<br>
+                      〒451-0053 名古屋市西区枇杷島1丁目1-2
+                    </li>
+                    <li>
+                      <span class="shorted_name">昭和２／昭和軽</span><br>
+                      名古屋市昭和スポーツセンター(第２競技場／軽運動室)<br>
+                      〒466-0000 名古屋市昭和区吹上町2丁目6-15
+                    </li>
+                    <li>
+                      <span class="shorted_name">中村２／中村軽</span><br>
+                      名古屋市中村スポーツセンター(第２競技場／軽運動室)<br>
+                      〒453-0053 名古屋市中村区中村町字待屋43-1
+                    </li>
+                    <li>
+                      <span class="shorted_name">西枇杷島</span><br>
+                      清須市·西枇杷島会館(ホール)<br>
+                      〒452-0002 清須市西枇杷島町花咲84番地
+                    </li>
+                    <li>
+                      <span class="shorted_name">県体Ｆ</span><br>
+                      愛知県体育館[ﾄﾞﾙﾌｨﾝｽﾞｱﾘｰﾅ](ﾌｨｯﾄﾈｽﾙｰﾑ)１８：１５～１９：４５<br>
+                      〒460-0032 名古屋市中区二の丸1-1
+                    </li>
+                    <li>
+                      <span class="shorted_name">ウィルＦ</span><br>
+                      ウィルあいち(ﾌｨｯﾄﾈｽﾙｰﾑ2 /1F)<br>
+                      〒461-0016 名古屋市中川区露橋2丁目14-1
+                    </li>
+                  </ul>
+                  <table class="table is-hidden-touch">
+                    <thead>
+                      <tr>
+                        <th>略名</th>
+                        <th>正式名<br>住所</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>露橋剣道</td>
+                        <td>
+                          名古屋市露橋スポーツセンター(剣道場)<br>
+                          〒454-0022 名古屋市中川区露橋2丁目14-1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>ガイシ３</td>
+                        <td>
+                          日本ガイシホール(第３競技場)<br>
+                          〒457-0833 名古屋市南区東又兵ヱ町5丁目1-16
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>枇杷島２／枇杷島軽</td>
+                        <td>
+                          名古屋市枇杷島スポーツセンター(第２競技場／軽運動室)<br>
+                          〒451-0053 名古屋市西区枇杷島1丁目1-2
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>昭和２／昭和軽</td>
+                        <td>
+                          名古屋市昭和スポーツセンター(第２競技場／軽運動室)<br>
+                          〒466-0000 名古屋市昭和区吹上町2丁目6-15
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>中村２／中村軽</td>
+                        <td>
+                          名古屋市中村スポーツセンター(第２競技場／軽運動室)<br>
+                          〒453-0053 名古屋市中村区中村町字待屋43-1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>西枇杷島</td>
+                        <td>
+                          清須市·西枇杷島会館(ホール)<br>
+                          〒452-0002 清須市西枇杷島町花咲84番地
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>県体Ｆ</td>
+                        <td>
+                          愛知県体育館[ﾄﾞﾙﾌｨﾝｽﾞｱﾘｰﾅ](ﾌｨｯﾄﾈｽﾙｰﾑ)１８：１５～１９：４５<br>
+                          〒460-0032 名古屋市中区二の丸1-1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>ウィルＦ</td>
+                        <td>
+                          ウィルあいち(ﾌｨｯﾄﾈｽﾙｰﾑ2 /1F)<br>
+                          〒461-0016 名古屋市中川区露橋2丁目14-1
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <h3>★入会手続きについて…</h3>
+                  <h4>■入会金・年会費等：</h4>
+                  <p>
+                    当協会に入会を希望される方は、入会申込書(定例会場にて配付)に必要事項記入の上、下記金額を添えてお申し込みいただきます。<br>
+                    年会費とスポーツ保険は４月～翌年3月までの年間費用です。以後1年ごとに支払っていただき、会員更新・スポーツ保険への(加入)更新となります。
+                    <ul>
+                      <li>① 入会金……………１,０００円</li>
+                      <li>②	年会費……………３,０００円/名 ※１</li>
+                      <li>③	スポーツ保険……１,８５０円 (中学生以下：８００円／６５歳以上：１,２００円) ※２</li>
+                    </ul>
+                    ※１. １家族２名以上の会員の皆様については、割引き制度があります。
+                    ※２. スポーツ保険の加入は任意です。
                   </p>
                 </div>
-                <div class="card-content">
-                  <h3 class="subtitle">その他の講座・同好会etc……</h3>
-                  <p>
-                    定例会以外に、当協会の講師を派遣している外部講座や同好会などの教室一覧表です。それぞれに参加手続き、受講料など違いますので、当協会までお問い合わせ下さい。
-                  </p>
-                  <table class="table is-fullwidth" id="other-lesson"></table>
-                </div>
-                
-                <div class="card-content">
-                  <h3 class="subtitle">特別講習会・強化練習会etc……</h3>
-                  <p>
-                    協会主催による「特別講習会」や「レベルアップ講習会」、競技大会参加者対象の「強化練習会」など、 いろいろな目的に応じた講習会も継続的に実施しています。<a>活動案内</a>をご参照下さい。
-                  </p>
-                  </div>
               </div>
             </div>
           </div>
@@ -140,7 +317,7 @@
           >本協会について</a
         >
         <a href="faq.html" class="column has-text-link-light"> よくある質問 </a>
-        <a class="column has-text-link-light">お問い合わせ</a>
+        <a href="https://ssl.form-mailer.jp/fms/6654742a745128" class="column has-text-link-light">お問い合わせ</a>
       </div>
       <div class="content has-text-centered">
         <p>

@@ -1,331 +1,413 @@
-function fetchCommittee() {
+function sortedByWeek(rawdata) {
+  const sortedData = {};
+  for (const week of ["日", "月", "火", "水", "木", "金", "土"]) {
+    dayOfTheWeek = rawdata.filter((element) => element["曜日"] === week);
+    sortedData[week] = dayOfTheWeek;
+  }
+  return sortedData;
+}
+
+function sortedByStartYearMonth(rawdata) {
+  const sortedData = {};
+  const setOfStartYearMonth = [
+    ...new Set(
+      rawdata.map((element) => element["開始年"] + "/" + element["開始月"])
+    ),
+  ];
+  for (const yearmonth of setOfStartYearMonth) {
+    dayOfTheStartYearAndMonth = rawdata.filter(
+      (element) => element["開始年"] + "/" + element["開始月"] === yearmonth
+    );
+    sortedData[yearmonth] = dayOfTheStartYearAndMonth;
+  }
+  return [sortedData, setOfStartYearMonth];
+}
+
+function generateRegularClassHTMLBySortedData(data) {
+  const wrapper = document.createElement("div");
+  wrapper.setAttribute("class", "generated_data");
+
+  for (const week of ["日", "月", "火", "水", "木", "金", "土"]) {
+    if (data[week].length === 0) {
+      continue;
+    }
+    {
+      const currentweek = document.createElement("dev");
+      currentweek.setAttribute("class", "week");
+
+      {
+        const weekTitle = document.createElement("h3");
+        weekTitle.setAttribute("class", "week_title");
+        weekTitle.innerHTML = week + "曜日";
+
+        currentweek.appendChild(weekTitle);
+      }
+      for (const classroom of data[week]) {
+        const currentClass = document.createElement("div");
+        currentClass.setAttribute("class", "classroom");
+        {
+          const classTitle = document.createElement("h4");
+          classTitle.setAttribute("class", "class_title");
+          classTitle.innerHTML =
+            "●" +
+            classroom["種目名"] +
+            "<br>" +
+            '<span class="start_end_time">' +
+            classroom["開始時間"] +
+            "～" +
+            classroom["終了時間"] +
+            "</span>";
+          currentClass.appendChild(classTitle);
+        }
+        {
+          const classDetail = document.createElement("p");
+          classDetail.setAttribute("class", "class_detail");
+          classDetail.innerHTML = classroom["説明"];
+          currentClass.appendChild(classDetail);
+        }
+        {
+          const instructor = document.createElement("div");
+          instructor.setAttribute("class", "instructor");
+          instructor.innerHTML = "●講師 :" + classroom["講師"];
+          currentClass.appendChild(instructor);
+        }
+        {
+          const venue = document.createElement("div");
+          venue.setAttribute("class", "venue");
+          venue.innerHTML = "●会場 :" + classroom["会場"];
+          currentClass.appendChild(venue);
+        }
+        {
+          const office = document.createElement("div");
+          office.setAttribute("class", "office");
+          office.innerHTML = "●事務担当 :" + classroom["事務担当"];
+          currentClass.appendChild(office);
+        }
+        currentweek.appendChild(currentClass);
+      }
+      wrapper.appendChild(currentweek);
+    }
+  }
+  return wrapper;
+}
+
+function generateAnnualEventsPCHTMLBySortedData(data, setOfStartYearMonth) {
+  const weekday = ["日", "月", "火", "水", "木", "金", "土"];
+  const table = document.createElement("table");
+  table.setAttribute(
+    "class",
+    "generated_data table is-bordered is-hidden-touch"
+  );
+
+  {
+    const thead = document.createElement("thead");
+    const tr = document.createElement("tr");
+
+    const th_month = document.createElement("th");
+    th_month.innerHTML = "月";
+    tr.appendChild(th_month);
+
+    const th_day = document.createElement("th");
+    th_day.innerHTML = "日";
+    tr.appendChild(th_day);
+
+    const th_event_name = document.createElement("th");
+    th_event_name.innerHTML = "行事名";
+    tr.appendChild(th_event_name);
+
+    const th_event_organizer = document.createElement("th");
+    th_event_organizer.innerHTML = "主催";
+    tr.appendChild(th_event_organizer);
+
+    const th_event_place = document.createElement("th");
+    th_event_place.innerHTML = "会場";
+    tr.appendChild(th_event_place);
+    thead.appendChild(tr);
+
+    table.appendChild(thead);
+  }
+
+  {
+    const tbody = document.createElement("tbody");
+
+    for (const yearmonth of setOfStartYearMonth) {
+      const number_of_events_on_month = data[yearmonth].length;
+      let is_first_event_of_month = true;
+
+      for (const event of data[yearmonth]) {
+        console.log(event);
+        const startDate = new Date(
+          event["開始年"],
+          parseInt(event["開始月"], 10) - 1,
+          event["開始日"]
+        );
+        const endDate = new Date(
+          event["終了年"],
+          parseInt(event["終了月"], 10) - 1,
+          event["終了日"]
+        );
+        const tr = document.createElement("tr");
+
+        if (is_first_event_of_month) {
+          const td_month = document.createElement("td");
+          td_month.innerHTML = yearmonth;
+          td_month.setAttribute("rowspan", number_of_events_on_month);
+          tr.appendChild(td_month);
+
+          is_first_event_of_month = false;
+        }
+
+        const td_day = document.createElement("td");
+        let dateinfo = "";
+        if (startDate.valueOf() === endDate.valueOf()) {
+          dateinfo =
+            startDate.getDate() + "(" + weekday[startDate.getDay()] + ")";
+        } else if (startDate.getMonth() === endDate.getMonth()) {
+          dateinfo =
+            startDate.getDate() +
+            "(" +
+            weekday[startDate.getDay()] +
+            ") ～ " +
+            endDate.getDate() +
+            "(" +
+            weekday[endDate.getDay()] +
+            ")";
+        } else {
+          dateinfo =
+            startDate.getDate() +
+            "(" +
+            weekday[startDate.getDay()] +
+            ") ～ " +
+            (endDate.getMonth() + 1) +
+            "/" +
+            endDate.getDate() +
+            "(" +
+            weekday[endDate.getDay()] +
+            ")";
+        }
+        td_day.innerHTML = dateinfo;
+        tr.appendChild(td_day);
+
+        const td_event_name = document.createElement("td");
+        td_event_name.innerHTML = event["行事名"];
+        tr.appendChild(td_event_name);
+
+        const td_event_organizer = document.createElement("td");
+        td_event_organizer.innerHTML = event["主催"];
+        tr.appendChild(td_event_organizer);
+
+        const td_event_location = document.createElement("td");
+        td_event_location.innerHTML = event["会場"];
+        tr.appendChild(td_event_location);
+
+        tbody.appendChild(tr);
+      }
+    }
+    table.appendChild(tbody);
+  }
+
+  return table;
+}
+
+function generateAnnualEventsMobileHTMLBySortedData(data, setOfStartYearMonth) {
+  const weekday = ["日", "月", "火", "水", "木", "金", "土"];
+  const wrapper = document.createElement("div");
+  wrapper.setAttribute("class", "generated_data is-hidden-desktop");
+
+  for (const yearmonth of setOfStartYearMonth) {
+    const currentmonth = document.createElement("div");
+    currentmonth.setAttribute("class", "month");
+    {
+      const monthTitle = document.createElement("h3");
+      monthTitle.setAttribute("class", "month_title");
+      monthTitle.innerHTML = yearmonth;
+
+      currentmonth.appendChild(monthTitle);
+    }
+    for (const event of data[yearmonth]) {
+      const startDate = new Date(
+        event["開始年"],
+        parseInt(event["開始月"], 10) - 1,
+        event["開始日"]
+      );
+      const endDate = new Date(
+        event["終了年"],
+        parseInt(event["終了月"], 10) - 1,
+        event["終了日"]
+      );
+
+      const currentEvent = document.createElement("div");
+      currentEvent.setAttribute("class", "event");
+
+      {
+        const eventTitle = document.createElement("p");
+        eventTitle.setAttribute("class", "event_title");
+
+        let dateinfo = "";
+        if (startDate.valueOf() === endDate.valueOf()) {
+          dateinfo =
+            startDate.getDate() + "(" + weekday[startDate.getDay()] + ")";
+        } else if (startDate.getMonth() === endDate.getMonth()) {
+          dateinfo =
+            startDate.getDate() +
+            "(" +
+            weekday[startDate.getDay()] +
+            ") ～ " +
+            endDate.getDate() +
+            "(" +
+            weekday[endDate.getDay()] +
+            ")";
+        } else {
+          dateinfo =
+            startDate.getDate() +
+            "(" +
+            weekday[startDate.getDay()] +
+            ") ～ " +
+            (endDate.getMonth() + 1) +
+            "/" +
+            endDate.getDate() +
+            "(" +
+            weekday[endDate.getDay()] +
+            ")";
+        }
+        eventTitle.innerHTML = dateinfo;
+        currentEvent.appendChild(eventTitle);
+      }
+      {
+        const eventInfo = document.createElement("p");
+        eventInfo.setAttribute("class", "event_info");
+        eventInfo.innerHTML =
+          '行事名 : <span class="event_name">' +
+          event["行事名"] +
+          "</span><br>主催 : " +
+          event["主催"] +
+          "<br>会場 : " +
+          event["会場"];
+        currentEvent.appendChild(eventInfo);
+      }
+      currentmonth.appendChild(currentEvent);
+    }
+    wrapper.appendChild(currentmonth);
+  }
+  return wrapper;
+}
+
+function generateCommitteesMobileHTML(data) {
+  const wrapper = document.createElement("div");
+  wrapper.setAttribute("class", "generated_data");
+
+  for (const person of data) {
+    const commitee = document.createElement("div");
+    commitee.setAttribute("class", "commitee");
+    commitee.innerHTML =
+      '<div class="job_title">' +
+      person["役職"] +
+      '</div><div class="name">' +
+      person["名前"] +
+      '</div><div class="sub-organ">' +
+      person["所属"] +
+      "</div>";
+
+    wrapper.appendChild(commitee);
+  }
+  return wrapper;
+}
+
+function generateCommitteesPCHTML(data) {
+  const table = document.createElement("table");
+  table.setAttribute(
+    "class",
+    "generated_data table is-bordered is-striped is-hidden-touch"
+  );
+  const tbody = document.createElement("tbody");
+
+  for (const person of data) {
+    const tr = document.createElement("tr");
+
+    const td_job = document.createElement("td");
+    td_job.innerHTML = person["役職"];
+    tr.appendChild(td_job);
+
+    const td_name = document.createElement("td");
+    td_name.innerHTML = person["名前"];
+    tr.appendChild(td_name);
+
+    const td_sub_organ = document.createElement("td");
+    td_sub_organ.innerHTML = person["所属"];
+    tr.appendChild(td_sub_organ);
+
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+
+  return table;
+}
+
+function mountTaichiLessonsHTMLTable() {
+  const req = new XMLHttpRequest();
+  req.open("get", "data/taichiLessons.csv", true);
+  req.send(null);
+
+  req.onload = function () {
+    parsedata = Papa.parse(req.responseText, { header: true });
+    sorteddata = sortedByWeek(parsedata.data);
+
+    div = generateRegularClassHTMLBySortedData(sorteddata);
+    document.getElementById("taichi-lesson").appendChild(div);
+  };
+}
+
+function mountTyokenLessonsHTMLTable() {
+  const req = new XMLHttpRequest();
+  req.open("get", "data/tyokenLessons.csv", true);
+  req.send(null);
+
+  req.onload = function () {
+    parsedata = Papa.parse(req.responseText, { header: true });
+    sorteddata = sortedByWeek(parsedata.data);
+
+    div = generateRegularClassHTMLBySortedData(sorteddata);
+    document.getElementById("tyoken-lesson").appendChild(div);
+  };
+}
+
+function mountAnnualEventsHTMLTable() {
+  const req = new XMLHttpRequest();
+  req.open("get", "data/annualEvents.csv", true);
+  req.send(null);
+
+  req.onload = function () {
+    parsedata = Papa.parse(req.responseText, { header: true });
+    let [sorteddata, setOfStartYearMonth] = sortedByStartYearMonth(
+      parsedata.data
+    );
+
+    div = generateAnnualEventsMobileHTMLBySortedData(
+      sorteddata,
+      setOfStartYearMonth
+    );
+    document.getElementById("annual-events").appendChild(div);
+
+    table = generateAnnualEventsPCHTMLBySortedData(
+      sorteddata,
+      setOfStartYearMonth
+    );
+    document.getElementById("annual-events").appendChild(table);
+  };
+}
+
+function mountCommitteesHTML() {
   const req = new XMLHttpRequest();
   req.open("get", "data/committee.csv", true);
   req.send(null);
 
   req.onload = function () {
-    parsedata = Papa.parse(req.responseText);
+    parsedata = Papa.parse(req.responseText, { header: true });
 
-    const TBody = document.createElement("tbody");
-    for (const element of parsedata.data) {
-      const TR = document.createElement("tr");
+    div = generateCommitteesMobileHTML(parsedata.data);
+    document.getElementById("commitees").appendChild(div);
 
-      const Title = document.createElement("th");
-      Title.appendChild(document.createTextNode(element[0]));
-
-      const Name = document.createElement("td");
-      Name.appendChild(document.createTextNode(element[1]));
-
-      const Other = document.createElement("td");
-      Other.appendChild(document.createTextNode("(" + element[2] + ")"));
-
-      TR.appendChild(Title);
-      TR.appendChild(Name);
-      TR.appendChild(Other);
-
-      TBody.appendChild(TR);
-    }
-    document.getElementById("committee").appendChild(TBody);
-  };
-}
-
-function fetchRegularLessons() {
-  const req = new XMLHttpRequest();
-  req.open("get", "data/regularLessons.csv", true);
-  req.send(null);
-
-  const TBody = document.createElement("tbody");
-  req.onload = function () {
-    parsedata = Papa.parse(req.responseText);
-
-    for (const week of ["日", "月", "火", "水", "木", "金", "土"]) {
-      dataFilteredByWeek = parsedata.data.filter(
-        (element) => element[0] === week
-      );
-
-      if (dataFilteredByWeek.length === 0) {
-        continue;
-      }
-
-      const TR1 = document.createElement("tr");
-      TR1.setAttribute("class", "week");
-
-      const TH11 = document.createElement("th");
-      TH11.setAttribute("class", "is-hidden-touch");
-      TH11.setAttribute("colspan", "5");
-      TH11.innerHTML = week + "曜日";
-      TR1.appendChild(TH11);
-
-      const TH12 = document.createElement("th");
-      TH12.setAttribute("class", "is-hidden-desktop");
-      TH12.innerHTML = week + "曜日";
-      TR1.appendChild(TH12);
-
-      TBody.appendChild(TR1);
-
-      const TR2 = document.createElement("tr");
-      TR2.setAttribute("class", "caption is-hidden-touch");
-
-      const TH21 = document.createElement("th");
-      TH21.setAttribute("class", "time");
-      TH21.innerHTML = "時間";
-      TR2.appendChild(TH21);
-
-      const TH22 = document.createElement("th");
-      TH22.setAttribute("class", "name");
-      TH22.innerHTML = "競技";
-      TR2.appendChild(TH22);
-
-      const TH23 = document.createElement("th");
-      TH23.setAttribute("class", "instructor");
-      TH23.innerHTML = "講師";
-      TR2.appendChild(TH23);
-
-      const TH24 = document.createElement("th");
-      TH24.setAttribute("class", "about");
-      TH24.innerHTML = "内容";
-      TR2.appendChild(TH24);
-
-      const TH25 = document.createElement("th");
-      TH25.setAttribute("class", "clerk");
-      TH25.innerHTML = "事務担当";
-      TR2.appendChild(TH25);
-
-      TBody.appendChild(TR2);
-
-      for (const element of dataFilteredByWeek) {
-        const TR = document.createElement("tr");
-        TR.setAttribute("class", "lesson");
-
-        const TD1 = document.createElement("td");
-        TD1.setAttribute("class", "time is-hidden-touch");
-        TD1.innerHTML = element[1];
-        TR.appendChild(TD1);
-
-        const TD2 = document.createElement("td");
-        TD2.setAttribute("class", "name is-hidden-touch");
-        TD2.innerHTML = element[2];
-        TR.appendChild(TD2);
-
-        const TD3 = document.createElement("td");
-        TD3.setAttribute("class", "instructor is-hidden-touch");
-        TD3.innerHTML = element[3].split("/").join("<br />");
-        TR.appendChild(TD3);
-
-        const TD4 = document.createElement("td");
-        TD4.setAttribute("class", "about");
-        TD4.innerHTML =
-          '<span class="is-hidden-desktop">' +
-          "時間 : " +
-          element[1] +
-          "<br />" +
-          "競技 : " +
-          element[2] +
-          "<br />" +
-          "講師 : " +
-          element[3].split("/").join("・") +
-          "<br />" +
-          "事務担当 : " +
-          element[5] +
-          "<br />" +
-          "内容 :<br />" +
-          "</span>" +
-          element[4];
-        TR.appendChild(TD4);
-
-        const TD5 = document.createElement("td");
-        TD5.setAttribute("class", "instructor is-hidden-touch");
-        TD5.innerHTML = element[5];
-        TR.appendChild(TD5);
-
-        TBody.appendChild(TR);
-      }
-    }
-    document.getElementById("regular-lesson").appendChild(TBody);
-  };
-}
-
-function fetchOtherLessons() {
-  const req = new XMLHttpRequest();
-  req.open("get", "data/otherLessons.csv", true);
-  req.send(null);
-
-  const TBody = document.createElement("tbody");
-  req.onload = function () {
-    parsedata = Papa.parse(req.responseText);
-
-    const cities = [...new Set(parsedata.data.map((x) => x[0]))];
-    for (const city of cities) {
-      dataFilteredByCity = parsedata.data.filter(
-        (element) => element[0] === city
-      );
-
-      if (dataFilteredByCity.length === 0) {
-        continue;
-      }
-
-      const TR1 = document.createElement("tr");
-      TR1.setAttribute("class", "city");
-
-      const TH11 = document.createElement("th");
-      TH11.setAttribute("class", "is-hidden-touch");
-      TH11.setAttribute("colspan", "6");
-      TH11.innerHTML = city;
-      TR1.appendChild(TH11);
-
-      const TH12 = document.createElement("th");
-      TH12.setAttribute("class", "is-hidden-desktop");
-      TH12.innerHTML = city;
-      TR1.appendChild(TH12);
-
-      TBody.appendChild(TR1);
-
-      const TR2 = document.createElement("tr");
-      TR2.setAttribute("class", "caption is-hidden-touch");
-
-      const TH21 = document.createElement("th");
-      TH21.setAttribute("class", "week");
-      TH21.innerHTML = "曜日";
-      TR2.appendChild(TH21);
-
-      const TH22 = document.createElement("th");
-      TH22.setAttribute("class", "time");
-      TH22.innerHTML = "時間";
-      TR2.appendChild(TH22);
-
-      const TH23 = document.createElement("th");
-      TH23.setAttribute("class", "name");
-      TH23.innerHTML = "教室名・講座名";
-      TR2.appendChild(TH23);
-
-      const TH24 = document.createElement("th");
-      TH24.setAttribute("class", "location");
-      TH24.innerHTML = "会場";
-      TR2.appendChild(TH24);
-
-      const TH25 = document.createElement("th");
-      TH25.setAttribute("class", "event");
-      TH25.innerHTML = "種目内容";
-      TR2.appendChild(TH25);
-
-      const TH26 = document.createElement("th");
-      TH26.setAttribute("class", "instructor");
-      TH26.innerHTML = "講師";
-      TR2.appendChild(TH26);
-
-      TBody.appendChild(TR2);
-
-      for (const element of dataFilteredByCity) {
-        const TR = document.createElement("tr");
-        TR.setAttribute("class", "lesson");
-
-        const TD1 = document.createElement("td");
-        TD1.setAttribute("class", "week is-hidden-touch");
-        TD1.innerHTML = element[1];
-        TR.appendChild(TD1);
-
-        const TD2 = document.createElement("td");
-        TD2.setAttribute("class", "time is-hidden-touch");
-        TD2.innerHTML = element[2];
-        TR.appendChild(TD2);
-
-        const TD3 = document.createElement("td");
-        TD3.setAttribute("class", "name is-hidden-touch");
-        TD3.innerHTML = element[3];
-        TR.appendChild(TD3);
-
-        const TD4 = document.createElement("td");
-        TD4.setAttribute("class", "location is-hidden-touch");
-        TD4.innerHTML = element[4];
-        TR.appendChild(TD4);
-
-        const TD5 = document.createElement("td");
-        TD5.setAttribute("class", "event is-hidden-touch");
-        TD5.innerHTML = element[5];
-        TR.appendChild(TD5);
-
-        const TD6 = document.createElement("td");
-        TD6.setAttribute("class", "instructor is-hidden-touch");
-        TD6.innerHTML = element[6].split("/").join("<br />");
-        TR.appendChild(TD6);
-
-        const TD7 = document.createElement("td");
-        TD7.setAttribute("class", "about is-hidden-desktop");
-        TD7.innerHTML =
-          "曜日 : " +
-          element[1] +
-          "<br />" +
-          "時間 : " +
-          element[2] +
-          "<br />" +
-          "教室名・講座名 : " +
-          element[3] +
-          "<br />" +
-          "会場 : " +
-          element[4] +
-          "<br />" +
-          "種目内容 : " +
-          element[5] +
-          "<br />" +
-          "講師 : " +
-          element[6].split("/").join("<br />") +
-          "<br />";
-        TR.appendChild(TD7);
-
-        TBody.appendChild(TR);
-      }
-    }
-
-    document.getElementById("other-lesson").appendChild(TBody);
-  };
-}
-
-function fetchActivities() {
-  const req = new XMLHttpRequest();
-  req.open("get", "data/activities.csv", true);
-  req.send(null);
-
-  req.onload = function () {
-    parsedata = Papa.parse(req.responseText);
-
-    events = parsedata.data.map((x) => {
-      return {
-        start: x[0],
-        end: x[0],
-        day: x[0],
-        organaizer: x[1],
-        title: x[2],
-        location: x[3],
-        description: x[4],
-      };
-    });
-
-    var calendarEl = document.getElementById("activity-calendar");
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: "dayGridMonth",
-      buttonText: { today: "今日の日付" },
-      events: events,
-      eventClick: function (info) {
-        alert(
-          "日付 : " +
-            info.event.extendedProps.day +
-            "\n" +
-            "主催 : " +
-            info.event.extendedProps.organaizer +
-            "\n" +
-            "行事名 : " +
-            info.event.title +
-            "\n" +
-            "会場 : " +
-            info.event.extendedProps.location +
-            "\n" +
-            "詳細 : " +
-            info.event.extendedProps.description
-        );
-      },
-    });
-
-    calendar.setOption("locale", "jp");
-    calendar.render();
+    table = generateCommitteesPCHTML(parsedata.data);
+    document.getElementById("commitees").appendChild(table);
   };
 }

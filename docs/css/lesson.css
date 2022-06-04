@@ -1,31 +1,44 @@
-#regular-lesson > tbody > .week {
+.classroom_title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.generated_data > .week > .week_title {
   background-color: hsl(188, 49%, 82%);
+  color: hsl(212, 100%, 19%);
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+.generated_data > .week > .classroom {
+  padding-bottom: 1em;
+}
+.generated_data > .week > .classroom:last-child {
+  border-bottom: 1px solid #000000;
 }
 
-#regular-lesson > tbody > .lesson > .time {
-  width: 14ex;
-  padding: 1ex;
+.generated_data > .week > .classroom > .class_title {
+  color: hsl(212, 100%, 19%);
+  font-size: 1.5em;
+  font-weight: bold;
+  border-top: 1px solid rgb(74, 74, 74);
+  border-bottom: 1px solid rgb(74, 74, 74);
 }
 
-#regular-lesson > tbody > .lesson > .name {
-  width: 18ex;
-  padding: 1ex;
+.generated_data > .week > .classroom > .class_title > .start_end_time {
+  color: rgb(74, 74, 74);
+  font-size: 0.8em;
+  font-weight: lighter;
 }
 
-#regular-lesson > tbody > .lesson > .instructor {
-  width: 15ex;
-  padding: 1ex;
+.generated_data > .week > .classroom > .class_detail {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-#regular-lesson > tbody > .lesson > .about {
-  padding: 1ex;
-}
-
-#regular-lesson > tbody > .lesson > .clerk {
-  width: 15ex;
-  padding: 1ex;
-}
-
-#other-lesson > tbody > .city {
-  background-color: hsl(188, 49%, 82%);
+.shorted_name {
+  font-weight: bold;
 }

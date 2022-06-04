@@ -2,10 +2,12 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
     <title>愛知県太極拳協会</title>
     <link rel="stylesheet" href="lib/bulma.min.css" />
 
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/faq.css" />
 
     <script src="lib/papaparse.min.js"></script>
 
@@ -14,18 +16,14 @@
   <body>
     <!-- ヘッダー部 -->
     <nav
-      class="common_navbar_base navbar"
+      class="common_navbar_base navbar is-fixed-top"
       role="navigation"
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item">
-          <img src="img/brandimage.png" />
-        </a>
-
         <a
           role="button"
-          class="navbar-burger"
+          class="ml-0 navbar-burger"
           aria-label="menu"
           aria-expanded="false"
           data-target="navMenu"
@@ -34,13 +32,21 @@
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
+        <a class="navbar-item">
+          <img src="img/brandimage.png" />
+        </a>
       </div>
 
       <div id="navMenu" class="navbar-menu common_navbar_menu">
         <div class="navbar-start">
           <a href="index.html" class="navbar-item"> トップページ </a>
 
-          <a class="navbar-item"> 入会希望・お問い合わせ </a>
+          <a
+            href="https://ssl.form-mailer.jp/fms/6654742a745128"
+            class="navbar-item"
+          >
+            入会希望・お問い合わせ
+          </a>
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> 各種情報 </a>
@@ -58,105 +64,109 @@
 
     <!-- メイン部 -->
     <main class="section has-background-light">
-      <div class="container box">
+      <div class="container box is-max-desktop">
         <div class="columns is-multiline">
           <div class="column is-full">
             <h2 class="subtitle">よくある質問</h2>
             <p>
-              頻繁にお問い合わせいただくご質問に対する回答を記載いたします。<br />
-              その他の質問については<a>入会希望・お問い合わせフォーム</a>もしくは協会電話番号「052-799-8078」までお気軽にお問合せ下さい。
+              よくあるご質問に対する回答を、以下にまとめました。<br />
+              なおその他の質問については、❲お問い合わせ❳
+              のメールフォームから、もしくは当協会(tel：052-799-8078)まで、お気軽にお問い合わせください。
             </p>
             <br />
             <article class="message">
               <div class="message-header">
                 <p>
-                  太極拳は「健康に良い」とよく聞きますが、どのような効果があるのか具体的に教えて下さい。
+                  Q1.
+                  太極拳は「健康に良い」とよく聞きますが、どのような効果があるのでしょうか？
                 </p>
               </div>
               <div class="message-body">
-                円運動が基本にある「太極拳」の動きを、心穏やかにゆったりと行うことで、心身ともにリラックス・リフレッシュできます。
-                全身の気血を整え、脳や臓器の働きを高め、同時に足腰を無理なく鍛えられ、健康づくりに高い効果があるといわれています。
-                練習を続けることで、姿勢を整え、足腰の強化、柔軟性やバランス能力の向上により、転倒防止・老化防止にも役立ちます。
+                A.
+                円運動が基本にある「太極拳」の動きを、心穏やかにゆったりと行うことで、心身ともにリラックス・リフレッシュできます。全身の気血を整え、脳や臓器の働きを高め、同時に足腰を無理なく鍛えられ、健康づくりに高い効果があるといわれています。練習を続けることで姿勢を整え、足腰の強化、柔軟性やバランス能力の向上により、転倒防止・老化防止にも役立ちます。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
                 <p>
+                  Q2.
                   定年を機に「太極拳」を始めたいと思っていますが、遅くはないですか?
                 </p>
               </div>
               <div class="message-body">
-                始めるのに歳は関係ありません。年齢や体力に応じた練習強度で行えるのが、太極拳の利点です。
-                「あせらず、ゆっくり、少しずつ…」の気持ちで、ご自身の身体と向き合いながら太極拳を楽しんで下さい。
+                A.
+                始めるのに時期は関係ありません。年齢や体力に応じた練習強度で行えるのが、太極拳の利点です。「あせらず、ゆっくり、少しずつ…」の気持ちで、ご自身の身体と向き合いながら太極拳を楽しんで下さい。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
-                <p>運動が苦手でもカンフーできますか?</p>
+                <p>Q3. 運動が苦手でもカンフーできますか?</p>
               </div>
               <div class="message-body">
-                大丈夫です。当協会では、「カンフー」⇒「長拳」の練習をおすすめしています。
-                中国武術全般の基礎訓練にもなりますし、まずは無理せず柔軟や「打つ・蹴る」などの簡単な基礎を各自のペースで学んでもらいながら、身体を動かす爽快感やおもしろさを実感して下さい。
+                A.
+                大丈夫です。当協会では、「カンフー」⇒「長拳」の練習をおすすめしています。中国武術全般の基礎訓練にもなりますし、まずは無理せず柔軟や「打つ・蹴る」などの簡単な基礎を各自のペースで学んでもらいながら、身体を動かす爽快感やおもしろさを実感して下さい。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
                 <p>
+                  Q4.
                   子どもにカンフーをやらせたいんですが、何歳くらいからがいいんでしょうか?
                 </p>
               </div>
               <div class="message-body">
-                カンフー(長拳)は全身運動で、筋肉・持久力・柔軟性・敏捷性・協調性等…、特に子供にとっての運動能力を偏ることなく向上させることができるので、小学生あたりで始めるのが良いかもしれません。
-                ただ、目的やペースはそれぞれですから、何歳からでも大丈夫ですし、会員の皆さんの中には30歳代や40歳代から始められた方や、太極拳を練習しながらカンフーを楽しんでおられる方も多く見えます。
+                A.
+                カンフー(長拳)は全身運動で、筋肉・持久力・柔軟性・敏捷性等々…、特に子供にとっての運動能力を偏ることなく向上させることができるので、小学生あたりで始めるのが良いかもしれません。ただ、目的やペースはそれぞれですから、何歳からでも大丈夫ですし、会員の皆さんの中には40代・50代から始められる方や、太極拳を練習しながらカンフーを楽しんでおられる方もみえます。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
-                <p>無料体験はできますか?</p>
+                <p>Q5. 無料体験はできますか?</p>
               </div>
               <div class="message-body">
-                見学であれば自由ですし、教室案内1にある＜定例会＞では、最初の1回に限り無料体験できます。教室に通われるかは、それから決めていただいて構いません。
-                教室案内2にある外部の教室・講座等はそれぞれに対応が違いますので、お気軽に当協会にお問い合わせ下さい。
+                A.
+                見学であれば自由ですし、教室案内にある〈定例会〉では、最初の1回に限り無料体験できます。教室に通われるかどうかはそれから決めていただいて構いません。ただし外部の教室・講座等はそれぞれに対応が違いますので、お気軽に当協会にお問い合わせ下さい。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
-                <p>練習の際の服装はどんなものが良いですか?</p>
+                <p>Q6. 練習の際の服装はどんなものが良いですか?</p>
               </div>
               <div class="message-body">
-                太極拳にしろカンフーにしろ、運動のできる服装であれば何でも構いません。またシューズは、ジョギングシューズのようなクツ底の厚いものは適しません。
-                できれば底の薄いスポーツシューズ(室内用)がいいと思います。ちなみに武術太極拳用のシューズもあります。
+                A.
+                太極拳にしろカンフーにしろ、運動のできる服装であれば何でも構いません。またシューズは、ジョギングシューズのようなクツ底の厚いものは適しません。できれば底の薄いスポーツシューズ(室内用)がいいと思います。ちなみに武術太極拳用のシューズもあります。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
                 <p>
-                  太極拳やカンフーの大会があるんですか?
-                  いつか参加してみたい気持ちもあるんですが…。
+                  Q7. 太極拳やカンフーの大会があるんですか?
+                  いつか参加してみたいんですが…。
                 </p>
               </div>
               <div class="message-body">
-                県大会から全日本選手権まで、いろいろな規模の競技大会があります。
-                「武術太極拳」を競技スポーツととらえて、それなりの練習ペースの中で技術向上に励んだ結果、トップレベルになれば、日本代表として国際大会参加の道もあります。
-                一方で、支流会や発表会などのイベントもあり、ジュニアから高齢の方々まで、多くの皆さんが楽しみながら参加しています。
+                A.
+                県大会から全日本選手権まで、いろいろな規模の競技大会があります。「武術太極拳」を競技スポーツととらえて、体力・技術向上に励み、選手として大会出場に挑むこともできます。一方、支流会や発表会などのイベント参加もでき、ジュニアから高齢の方々まで多くの皆さんが演武を楽しんでおられます。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
-                <p>太極拳のインストラクター(指導者)になりたいんですが…?</p>
+                <p>Q8. 太極拳のインストラクター(指導者)になりたいんですが…?</p>
               </div>
               <div class="message-body">
-                誰でもなれるという訳ではありません。
-                練習を積み重ねて、ある一定の技術レベルを持ち合わせた上で指導員資格を取得し、加えて指導者としての人柄や人格が認められれば、当協会の講師として教室等の紹介も可能です。
+                A.
+                誰でもなれるという訳ではありません。練習を積み重ねて、ある一定の技術レベルを持ち合わせた上で指導員資格を取得し、加えて指導者としての自覚や責任感を持ち、人格が認められれば、当協会の講師として教室等の紹介も可能ではあります。
               </div>
             </article>
             <article class="message">
               <div class="message-header">
                 <p>
+                  Q9.
                   太極拳やカンフーの講師を紹介・派遣してもらうことはできますか?
                 </p>
               </div>
               <div class="message-body">
+                A.
                 継続的な教室や単発の講習会への講師派遣の要望があれば、曜日・時間の調整と条件の合意の上、「太極拳」「カンフー」それぞれの講師を派遣することも可能です。
                 お気軽にお問い合わせ下さい。
               </div>
@@ -180,7 +190,11 @@
           >本協会について</a
         >
         <a href="faq.html" class="column has-text-link-light"> よくある質問 </a>
-        <a class="column has-text-link-light">お問い合わせ</a>
+        <a
+          href="https://ssl.form-mailer.jp/fms/6654742a745128"
+          class="column has-text-link-light"
+          >お問い合わせ</a
+        >
       </div>
       <div class="content has-text-centered">
         <p>
