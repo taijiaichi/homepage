@@ -40,7 +40,7 @@ GitHub Pages の機能を用いて公開されております。
 なお、csvファイルの特性上、文字列に半角のカンマを入れる事が出来ない事にご注意ください。
 
 1. GitHubにログインする。
-1. ブラウザのURL欄に"https://github.com/taijiaichi/homepage/tree/main/docs/data"と入力する。
+1. ブラウザのURL欄に"<https://github.com/taijiaichi/homepage/tree/main/docs/data>"と入力する。
 1. 編集したいファイルをクリックする。(間にフォルダが挟まっている場合は、フォルダを順にクリックする)
 1. ファイル内容が表示されているエリア上部のペンのマークをクリックする。
 1. ファイルの中身を編集する。(この際、編集した行のカンマの数が先頭行と一致することを確認する)
