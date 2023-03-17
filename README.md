@@ -61,6 +61,7 @@ GitHub Pages の機能を用いて公開されております。
 ## バックアップ確認方法
 
 以下のURLからご確認ください。
+
 <https://github.com/taijiaichi/homepage/commits/main>
 
 ## 利用している外部ツール
