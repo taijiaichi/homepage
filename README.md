@@ -40,7 +40,7 @@ GitHub Pages の機能を用いて公開されております。
 なお、csvファイルの特性上、文字列に半角のカンマを入れる事が出来ない事にご注意ください。
 
 1. GitHubにログインする。
-1. ブラウザのURL欄に" <https://github.com/taijiaichi/homepage/tree/main/docs/data> "と入力する。
+1. ブラウザのURL欄に"<https://github.com/taijiaichi/homepage/tree/main/docs/data>"と入力する。
 1. 編集したいファイルをクリックする。(間にフォルダが挟まっている場合は、フォルダを順にクリックする)
 1. ファイル内容が表示されているエリア上部のペンのマークをクリックする。
 1. ファイルの中身を編集する。(この際、編集した行のカンマの数が先頭行と一致することを確認する)
@@ -53,7 +53,7 @@ GitHub Pages の機能を用いて公開されております。
 
 1. 「定例会のご案内」の画像ファイルをpng形式、yyyy-mm.pngという名称で作成する。
 1. GitHubにログインする。
-1. ブラウザのURL欄に"https://github.com/taijiaichi/homepage/tree/main/docs/data/regularMeetingImg"と入力する。
+1. ブラウザのURL欄に"<https://github.com/taijiaichi/homepage/tree/main/docs/data/regularMeetingImg>"と入力する。
 1. 「Add file > Upload files」をクリックする。
 1. 用意しておいた画像ファイルを「Drag files here to add them to your repository」へドラッグ&ドロップする。
 1. 画面下部の「Commit changes」項目の上段に編集目的、下段に具体的な編集内容を記載し、緑色の「Commit changes」ボタンをクリックする。
