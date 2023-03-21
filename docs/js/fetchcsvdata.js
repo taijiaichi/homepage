@@ -349,7 +349,7 @@ function mountTaichiLessonsHTMLTable() {
   req.send(null);
 
   req.onload = function () {
-    parsedata = Papa.parse(req.responseText, { header: true });
+    parsedata = Papa.parse(req.responseText, { header: true, skipEmptyLines: true });
     sorteddata = sortedByWeek(parsedata.data);
 
     div = generateRegularClassHTMLBySortedData(sorteddata);
@@ -363,7 +363,7 @@ function mountTyokenLessonsHTMLTable() {
   req.send(null);
 
   req.onload = function () {
-    parsedata = Papa.parse(req.responseText, { header: true });
+    parsedata = Papa.parse(req.responseText, { header: true, skipEmptyLines: true });
     sorteddata = sortedByWeek(parsedata.data);
 
     div = generateRegularClassHTMLBySortedData(sorteddata);
@@ -377,7 +377,7 @@ function mountAnnualEventsHTMLTable() {
   req.send(null);
 
   req.onload = function () {
-    parsedata = Papa.parse(req.responseText, { header: true });
+    parsedata = Papa.parse(req.responseText, { header: true, skipEmptyLines: true });
     let [sorteddata, setOfStartYearMonth] = sortedByStartYearMonth(
       parsedata.data
     );
@@ -402,7 +402,7 @@ function mountCommitteesHTML() {
   req.send(null);
 
   req.onload = function () {
-    parsedata = Papa.parse(req.responseText, { header: true });
+    parsedata = Papa.parse(req.responseText, { header: true, skipEmptyLines: true });
 
     div = generateCommitteesMobileHTML(parsedata.data);
     document.getElementById("commitees").appendChild(div);
