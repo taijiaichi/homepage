@@ -10,14 +10,34 @@
   background-color: hsl(0, 0%, 100%);
 }
 
+.navbar-burger span {
+  height: 2px;
+}
+
+h2.title {
+  font-size: 1.55em;
+  margin-bottom: 1rem !important;
+  color: #213a70;
+}
+
 h2.subtitle {
-  background-color: hsl(0, 100%, 40%);
+  background-color: #932e44;
   color: hsl(0, 0%, 100%);
 
+  text-align: center;
   padding: 0.5em;
+
+  font-size: 1.6em;
+}
+h2.subtitle > span {
+  font-size: 0.8em;
 }
 
 h4 {
   margin-top: 1em;
-  color: hsl(212, 100%, 19%);
+  color: #213a70;
+}
+
+.line{
+  background-color: #000000;
 }

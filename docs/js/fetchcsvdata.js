@@ -11,12 +11,12 @@ function sortedByStartYearMonth(rawdata) {
   const sortedData = {};
   const setOfStartYearMonth = [
     ...new Set(
-      rawdata.map((element) => element["開始年"] + "/" + element["開始月"])
+      rawdata.map((element) => element["開始年"] + "／" + element["開始月"])
     ),
   ];
   for (const yearmonth of setOfStartYearMonth) {
     dayOfTheStartYearAndMonth = rawdata.filter(
-      (element) => element["開始年"] + "/" + element["開始月"] === yearmonth
+      (element) => element["開始年"] + "／" + element["開始月"] === yearmonth
     );
     sortedData[yearmonth] = dayOfTheStartYearAndMonth;
   }
@@ -49,8 +49,9 @@ function generateRegularClassHTMLBySortedData(data) {
           const classTitle = document.createElement("h4");
           classTitle.setAttribute("class", "class_title");
           classTitle.innerHTML =
-            "●" +
+          '<span class="round">●</span>' +
             classroom["種目名"] +
+            '<span class="round">●</span>' +
             "<br>" +
             '<span class="start_end_time">' +
             classroom["開始時間"] +

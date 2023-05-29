@@ -1,6 +1,11 @@
+#annual-events > div.generated_data > .month{
+  margin-bottom: 2em;
+}
+
+
 #annual-events > div.generated_data > .month > .month_title {
   background-color: hsl(188, 49%, 82%);
-  color: hsl(212, 100%, 19%);
+  color: #213a70;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
