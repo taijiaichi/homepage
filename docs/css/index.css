@@ -1,6 +1,6 @@
 .mainpage_header {
   position: relative;
-  background-image: url("../img/imagephoto.png");
+  background-image: url("../img/imagephoto.jpg?20230604");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -36,12 +36,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-}
-
-.mainpage_letsfun_img {
-  background-image: url("../img/imagephoto.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .mainpage_letsfun_letter {
