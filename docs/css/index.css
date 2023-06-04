@@ -16,7 +16,7 @@
   left: 0;
   right: 0;
 
-  height: 8rem;
+  height: 5rem;
 
   background-image: url("../img/aichitaichi.png");
   background-repeat: no-repeat;
@@ -26,11 +26,11 @@
 
 .mainpage_header .subtitle {
   position: absolute;
-  top: 14rem;
+  top: 11rem;
   left: -2em;
   right: -2em;
 
-  height: 7rem;
+  height: 10rem;
 
   background-image: url("../img/letsfun.png");
   background-repeat: no-repeat;
@@ -45,7 +45,7 @@
 }
 
 .mainpage_letsfun_letter {
-  color: rgb(100, 1, 37);
+  color: #932e44;
   font-weight: bold;
   text-shadow: 0.1rem 0.1rem 0 rgb(255, 255, 255),
     -0.1rem 0.1rem 0 rgb(255, 255, 255), 0.1rem -0.1rem 0 rgb(255, 255, 255),

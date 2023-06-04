@@ -5,7 +5,7 @@
 
 .generated_data > .week > .week_title {
   background-color: hsl(188, 49%, 82%);
-  color: hsl(212, 100%, 19%);
+  color: #213a70;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
@@ -15,28 +15,46 @@
 .generated_data > .week > .classroom {
   padding-bottom: 1em;
 }
-.generated_data > .week > .classroom:last-child {
-  border-bottom: 1px solid #000000;
-}
 
 .generated_data > .week > .classroom > .class_title {
-  color: hsl(212, 100%, 19%);
+  color: #932e44;
   font-size: 1.5em;
   font-weight: bold;
   border-top: 1px solid rgb(74, 74, 74);
   border-bottom: 1px solid rgb(74, 74, 74);
+
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+
+  text-align: center;
+  line-height: 100%;
+}
+.generated_data > .week > .classroom > .class_title > .round {
+  font-size: 0.8em;
 }
 
+
 .generated_data > .week > .classroom > .class_title > .start_end_time {
-  color: rgb(74, 74, 74);
+  color: #932e44;
   font-size: 0.8em;
   font-weight: lighter;
+  position: relative;
 }
 
 .generated_data > .week > .classroom > .class_detail {
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.how-to-membership {
+  color: #932e44;
+  font-size: 1.7em;
+  font-weight: bold;
+  border-top: 1px solid  #932e44;
+  border-bottom: 1px solid #932e44;
+
+  text-align: center;
 }
 
 .shorted_name {
