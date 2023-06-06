@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+.generated_data{
+  border-bottom: 1px solid rgb(74, 74, 74);
+}
+
 .generated_data > .week > .week_title {
   background-color: hsl(188, 49%, 82%);
   color: #213a70;
@@ -14,6 +18,7 @@
 }
 .generated_data > .week > .classroom {
   padding-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .generated_data > .week > .classroom > .class_title {
@@ -48,8 +53,9 @@
 }
 
 .how-to-membership {
+  margin-top: 2em;
   color: #932e44;
-  font-size: 1.7em;
+  font-size: 1.5em;
   font-weight: bold;
   border-top: 1px solid  #932e44;
   border-bottom: 1px solid #932e44;
