@@ -21,10 +21,6 @@
   margin-bottom: 2em;
 }
 
-.generated_data > .week > .classroom:last-child {
-  margin-bottom:0;
-}
-
 .generated_data > .week > .classroom > .class_title {
   color: #932e44;
   font-size: 1.5em;
