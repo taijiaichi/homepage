@@ -18,6 +18,8 @@ h2.title {
   font-size: 1.55em;
   margin-bottom: 1rem !important;
   color: #213a70;
+
+  text-align: center;
 }
 
 h2.subtitle {
